@@ -1,6 +1,5 @@
-// Example list of first and last names
-const firstNames = ['Alex', 'Jamie', 'Chris', 'Taylor', 'Jordan'];
-const lastNames = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones'];
+let firstNames = [];
+let lastNames = [];
 
 // Function to pick a random element from an array
 function pickRandom(array) {
@@ -16,21 +15,34 @@ function generateRandomName() {
 
 // Function to replace text content of elements with class 'name' or 'username'
 function replaceNames() {
-  // Find all elements with the class 'name' or 'username'
   const elements = document.querySelectorAll('.name, .username');
-
-  // Replace the text content of each element with a random name
   elements.forEach(element => {
     element.textContent = generateRandomName();
   });
 }
 
-// Run the replaceNames function when the DOM is fully loaded
-window.addEventListener('DOMContentLoaded', replaceNames());
+// Function to initialize the extension after names are loaded
+function initializeExtension() {
+  // Add a DOMContentLoaded event listener if needed
+  // window.addEventListener('DOMContentLoaded', replaceNames);
 
-// Listen for messages from the popup
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  // Listen for messages from the popup
+  chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.action === "replaceNames") {
-        replaceNames();  // Call the replaceNames function
+      replaceNames();  // Call the replaceNames function
     }
-});
+  });
+
+  // Optionally, call replaceNames immediately if needed
+  replaceNames();
+}
+
+// Load names from JSON and initialize the extension
+fetch(chrome.runtime.getURL('names.json'))
+  .then(response => response.json())
+  .then(data => {
+    firstNames = data.firstNames;
+    lastNames = data.lastNames;
+    initializeExtension();  // Initialize after names are loaded
+  })
+  .catch(error => console.error('Error loading names:', error));

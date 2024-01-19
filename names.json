@@ -1,0 +1,18 @@
+{
+    "firstNames": [
+        "Alex", "Jamie", "Chris", "Taylor", "Jordan",
+        "Morgan", "Casey", "Riley", "Quinn", "Peyton",
+        "Avery", "Harper", "Logan", "Bailey", "Cameron",
+        "Sage", "Parker", "Kai", "Dakota", "Rowan",
+        "Charlie", "Skyler", "Jesse", "Frankie", "Elliot",
+        "Ariel", "Emerson", "River", "Marley", "Blake"
+    ],
+    "lastNames": [
+        "Smith", "Johnson", "Williams", "Brown", "Jones",
+        "Garcia", "Miller", "Davis", "Rodriguez", "Martinez",
+        "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson",
+        "Thomas", "Taylor", "Moore", "Jackson", "Martin",
+        "Lee", "Perez", "Thompson", "White", "Harris",
+        "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson"
+    ]
+}
