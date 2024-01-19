@@ -20,6 +20,11 @@ After installation:
 2. The extension will automatically replace the names in specified classes.
 3. To customize class names, click the extension icon in the toolbar and enter your desired class names in the settings.
 
+### To-do
+* On-off toggle
+* Targeting element by attribute
+* Add reset to beginning state
+
 ## Acknowledgments
 - A special thanks to everyone who contributed to the development and testing of this extension.
 - Inspired by the need for privacy and data protection in the digital age.
