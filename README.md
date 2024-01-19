@@ -1,4 +1,4 @@
-# Chrome Extension: Name Replacer
+# Anonymizer of PII for Chrome
 
 ## Description
 This Chrome Extension automatically identifies elements on web pages with specific class names (like "name" or "username") and replaces their content with randomly generated names. It's designed for users who wish to see mock names instead of actual ones on web pages for privacy reasons, testing, or other purposes.
