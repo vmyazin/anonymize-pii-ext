@@ -22,8 +22,9 @@ After installation:
 
 ### To-do
 * On-off toggle
-* Targeting element by attribute
-* Add reset to beginning state
+* Add support for emails
+* Add support for phone numbers
+* Add support for mailing addresses
 
 ## Acknowledgments
 - A special thanks to everyone who contributed to the development and testing of this extension.

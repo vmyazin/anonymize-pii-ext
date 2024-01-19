@@ -1,1 +1,1 @@
-const DEFAULT_CLASS_NAMES = ['name', 'username'];
+const DEFAULT_SELECTORS = ['.name', '.username'];
