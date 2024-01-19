@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Settings - Anonymizer PII</title>
+    <style>
+        /* Add your CSS styling here */
+        body {
+            padding: 15px;
+            font-family: Arial, sans-serif;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Anonymizer PII Settings</h2>
+    <div class="section">
+        <form id="settings-form">
+            <div class="form-group">
+                <label for="className">Class Name:</label>
+                <input type="text" id="className" placeholder="Enter class name">
+            </div>
+            <button type="submit">Save</button>
+        </form>
+    </div>
+
+    <div class="section">
+        <button type="button" id="apply-button">Randomize Again</button>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
