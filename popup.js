@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const displayCurrentSelectors = (selectors) => {
         let displayDiv = document.getElementById('current-sel');
         if (displayDiv) {
-            displayDiv.innerHTML = selectors.join(', ');
+            displayDiv.innerHTML = selectors.length > 0 ? selectors.join(', ') : 'none';
         }
     };
 
@@ -40,10 +40,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Reset to default values
     document.getElementById('reset-button').addEventListener('click', function () {
-        chrome.storage.sync.set({ 'selectors': DEFAULT_SELECTORS }, function () {
+        chrome.storage.sync.set({ 'selectors': [] }, () => {
             console.log('Extension reset to default state');
             console.log('Current selectors:', DEFAULT_SELECTORS);
-            displayCurrentSelectors(DEFAULT_SELECTORS);
+            displayCurrentSelectors([]);
             clearAllInputs();
         });
     });
