@@ -24,7 +24,7 @@
     ],
     "web_accessible_resources": [
         {
-            "resources": ["dictionary.json"],
+            "resources": ["dictionary.json", "styles.css"],
             "matches": ["<all_urls>"]
         }
     ],
