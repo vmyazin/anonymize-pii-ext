@@ -1,0 +1,34 @@
+{
+    "firstNames": [
+        "Alex", "Jamie", "Chris", "Taylor", "Jordan",
+        "Morgan", "Casey", "Riley", "Quinn", "Peyton",
+        "Avery", "Harper", "Logan", "Bailey", "Cameron",
+        "Sage", "Parker", "Kai", "Dakota", "Rowan",
+        "Charlie", "Skyler", "Jesse", "Frankie", "Elliot",
+        "Ariel", "Emerson", "River", "Marley", "Blake", "Allen",
+        "Carter", "Koda", "Maverick", "Kane", "Koda",
+        "Tanaka", "Satsuki", "Yamato", "Nagato", "Sakura",
+        "Sundeep", "Kaur", "Kumar"
+    ],
+    "lastNames": [
+        "Smith", "Johnson", "Williams", "Brown", "Jones",
+        "Garcia", "Miller", "Davis", "Rodriguez", "Martinez",
+        "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson",
+        "Thomas", "Taylor", "Moore", "Jackson", "Martin",
+        "Lee", "Perez", "Thompson", "White", "Harris",
+        "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson", "Lee",
+        "Walker", "Hall", "Vladimir", "Young", "Hill", "Scott",
+        "Campos", "Rodrigues", "Alves", "Costa", "Fernandes",
+        "Nguyen", "Tran", "Pham", "Hsu", "Lam",
+        "Yamamoto", "Nakata", "Suzuki", "Kimura"
+    ],
+    "phoneNumbers": [
+        "123-456-7890", "234-567-8901"
+    ],
+    "addresses": [
+        "123 Fake Street", "456 Imaginary Road"
+    ],
+    "emails": [
+        "example1@email.com", "example2@email.com"
+    ]
+}

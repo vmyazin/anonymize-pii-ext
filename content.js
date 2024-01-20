@@ -38,7 +38,7 @@ function initializeExtension() {
 }
 
 // Load names from JSON and initialize the extension
-fetch(chrome.runtime.getURL('names.json'))
+fetch(chrome.runtime.getURL('dictionary.json'))
     .then(response => response.json())
     .then(data => {
         firstNames = data.firstNames;
