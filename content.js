@@ -37,22 +37,33 @@ function initializeExtension() {
     });
 }
 
-// Load names from JSON and initialize the extension
-fetch(chrome.runtime.getURL('dictionary.json'))
-    .then(response => response.json())
-    .then(data => {
-        firstNames = data.firstNames;
-        lastNames = data.lastNames;
-        initializeExtension(); // Initialize after names are loaded
-    })
-    .catch(error => console.error('Error loading names:', error));
+// At the start of the script, check if the extension is enabled
+chrome.storage.sync.get('extensionEnabled', function (data) {
+    const isExtensionEnabled = data.hasOwnProperty('extensionEnabled') ? data.extensionEnabled : true; // Default to true
+
+    if (isExtensionEnabled) {
+
+        // Load names from JSON and initialize the extension
+        fetch(chrome.runtime.getURL('dictionary.json'))
+            .then(response => response.json())
+            .then(data => {
+                firstNames = data.firstNames;
+                lastNames = data.lastNames;
+                initializeExtension(); // Initialize after names are loaded
+            })
+            .catch(error => console.error('Error loading names:', error));
+
+    }
+});
 
 // Listen for messages from the popup
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request.action === "replaceNames") {
-        // Fetch the class name from storage and then replace names
-        chrome.storage.sync.get('className', function (data) {
-            replaceNames(data.className); // Call replaceNames with updated class name
+        chrome.storage.sync.get(['selectors', 'extensionEnabled'], function(data) {
+            if (data.extensionEnabled) {
+                // Apply replacement logic
+                request.selectors.forEach(selector => replaceNames(selector));
+            }
         });
     }
 });

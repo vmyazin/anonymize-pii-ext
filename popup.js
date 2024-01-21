@@ -60,34 +60,45 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    const toggleExtensionFunctionality = (isEnabled) => {
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            if (tabs[0] && tabs[0].id) {
+                chrome.tabs.sendMessage(tabs[0].id, {action: "toggleExtension", enabled: isEnabled});
+            }
+        });
+    };
+    
     document.getElementById('extensionToggle').addEventListener('change', function() {
         var contentContainer = document.getElementById('contentContainer');
-        if(this.checked) {
-            // Code to enable the extension's functionality
-            contentContainer.style.display = 'block';
-            toggleExtensionFunctionality(this.checked)
-        } else {
-            contentContainer.style.display = 'none';
-            // Code to disable the extension's functionality
-            toggleExtensionFunctionality(!this.checked)
-        }
-
+        contentContainer.style.display = this.checked ? 'block' : 'none';
+        toggleExtensionFunctionality(this.checked);
+    
         // Reload the current tab
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
             if (tabs[0] && tabs[0].id) {
                 chrome.tabs.reload(tabs[0].id);
             }
         });
-    }); 
+    });    
 
-    const toggleExtensionFunctionality = (isEnabled) => {
-        if (isEnabled) {
-            // Code to enable the extension's functionality
-            console.log("Extension enabled");
-        } else {
-            // Code to disable the extension's functionality
-            console.log("Extension disabled");
-        }
-    };
+
+    document.getElementById('extensionToggle').addEventListener('change', function() {
+        let isEnabled = this.checked;
+        var contentContainer = document.getElementById('contentContainer');
+        contentContainer.style.display = isEnabled ? 'block' : 'none';
+    
+        // Save the state to local storage
+        chrome.storage.sync.set({ 'extensionEnabled': isEnabled }, function() {
+            console.log(`Extension state set to: ${isEnabled ? 'ON' : 'OFF'}`);
+        });
+    
+        // Reload the current tab
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            if (tabs[0] && tabs[0].id) {
+                chrome.tabs.reload(tabs[0].id);
+            }
+        });
+    });
+    
 
 });
