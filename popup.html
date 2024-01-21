@@ -8,18 +8,22 @@
 </head>
 
 <body>
-    <h2 class="icon-heading-combo">
-        <img src="assets/prefs.svg" alt="">
-        Anonymizer of PII
-    </h2>
-    <div class="lead text-light">
-        <p>This extension will generate random people names for the selected elements.</p>
+    <div class="section-top">
+        <div class="d-flex justify-content-between gap-10">
+            <h2 class="icon-heading-combo">
+                <img src="assets/prefs.svg" alt="">
+                Anonymizer of PII
+            </h2>
+            <label class="switch">
+                <input type="checkbox" id="extensionToggle" checked>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="lead text-light">
+            <p>This extension will generate random people names for the selected elements.</p>
+        </div>
     </div>
 
-    <label class="switch">
-        <input type="checkbox" id="extensionToggle" checked>
-        <span class="slider round"></span>
-    </label>
     <div id="contentContainer">
 
         <section class="section-name expanded">
@@ -34,10 +38,10 @@
                 <form id="settings-form">
                     <div class="form-group">
                         <label for="className">CSS Selector: </label>
-                        <input type="text" id="selectorInputName" class="flex-1" placeholder="Ex: td.class[attr]">
+                        <input type="text" id="selectorInput" class="flex-1" placeholder="Ex: td.class[attr]">
                     </div>
                     
-                    <div class="d-flex align-items-center gap-10">
+                    <div class="d-flex align-items-center gap-75">
                         <span class="faux-link" id="reset-button">Reset</span>
                         <button type="button" class="btn-full btn-outline" id="save-button">Add</button>
                     </div>
@@ -55,7 +59,7 @@
                         <label for="className">CSS Selector: </label>
                         <input type="text" id="selectorInputPhone" class="flex-1" placeholder="Enter CSS selector">
                     </div>    
-                    <div class="d-flex align-items-center gap-10">
+                    <div class="d-flex align-items-center gap-76">
                         <span class="faux-link" id="">Reset</span>
                         <button type="button" class="btn-full btn-outline" id="">Add</button>
                     </div>
@@ -75,7 +79,7 @@
             </h3>
         </section>
 
-        <div class="section">
+        <div class="section-footer">
             <button class="btn-full" type="button" id="apply-button">Randomize</button>
         </div>
     </div>
