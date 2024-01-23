@@ -12,7 +12,8 @@ h2 {
   margin: 0;
 }
 
-.form-group {
+.form-group,
+.input-group {
   display: flex;
   margin-bottom: 10px;
   gap: 15px;

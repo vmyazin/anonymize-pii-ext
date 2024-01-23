@@ -24,7 +24,7 @@
     ],
     "web_accessible_resources": [
         {
-            "resources": ["dictionary.json", "styles.css", "assets/angle-right.svg"],
+            "resources": ["dictionary.json", "styles.css", "section-tpl.html", "assets/angle-right.svg"],
             "matches": ["<all_urls>"]
         }
     ],
