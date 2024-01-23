@@ -64,6 +64,21 @@ h2 {
   background-color: transparent;
 }
 
+.strip-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: #005fa4;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+.strip-button:hover {
+  text-decoration: none;
+}
+
 .text-sm {
   font-size: 14px;
 }
