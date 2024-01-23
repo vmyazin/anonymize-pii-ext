@@ -25,6 +25,8 @@ After installation:
 ### To-do
 - ability to load a custom data file
 - summary of selectors under the collapsed category titles (total number or actual selectors)
+- ability to load a local config file
+- remember section open state in local storage
 
 ## Acknowledgments
 - A special thanks to everyone who contributed to the development and testing of this extension.

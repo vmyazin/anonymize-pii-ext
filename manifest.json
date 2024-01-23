@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Anonymizer PII",
-    "version": "1.0",
-    "description": "Replaces text in elements with class 'name' or similar with random names.",
+    "name": "Anonymizer for PII",
+    "version": "0.3.1",
+    "description": "Generates random personal information for specified text elements on a web page.",
     "permissions": [
       "storage",
       "activeTab"
