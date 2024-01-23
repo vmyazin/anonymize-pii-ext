@@ -1,34 +1,36 @@
 {
-    "firstNames": [
-        "Alex", "Jamie", "Chris", "Taylor", "Jordan",
-        "Morgan", "Casey", "Riley", "Quinn", "Peyton",
-        "Avery", "Harper", "Logan", "Bailey", "Cameron",
-        "Sage", "Parker", "Kai", "Dakota", "Rowan",
-        "Charlie", "Skyler", "Jesse", "Frankie", "Elliot",
-        "Ariel", "Emerson", "Vladimir", "River", "Marley", "Blake", "Allen",
-        "Carter", "Koda", "Maverick", "Kane", "Koda",
-        "Tanaka", "Satsuki", "Yamato", "Nagato", "Sakura",
-        "Sundeep", "Kaur", "Kumar"
-    ],
-    "lastNames": [
-        "Smith", "Johnson", "Williams", "Brown", "Jones",
-        "Garcia", "Miller", "Davis", "Rodriguez", "Martinez",
-        "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson",
-        "Thomas", "Taylor", "Moore", "Jackson", "Martin",
-        "Lee", "Perez", "Thompson", "White", "Harris",
-        "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson", "Lee",
-        "Walker", "Hall", "Young", "Hill", "Scott",
-        "Campos", "Rodrigues", "Alves", "Costa", "Fernandes",
-        "Nguyen", "Tran", "Pham", "Hsu", "Lam",
-        "Yamamoto", "Nakata", "Suzuki", "Kimura"
-    ],
+    "names": {
+        "firstNames": [
+            "Alex", "Jamie", "Chris", "Taylor", "Jordan",
+            "Morgan", "Casey", "Riley", "Quinn", "Peyton",
+            "Avery", "Harper", "Logan", "Bailey", "Cameron",
+            "Sage", "Parker", "Kai", "Dakota", "Rowan",
+            "Charlie", "Skyler", "Jesse", "Frankie", "Elliot",
+            "Ariel", "Emerson", "Vladimir", "River", "Marley", "Blake", "Allen",
+            "Carter", "Koda", "Maverick", "Kane", "Koda",
+            "Tanaka", "Satsuki", "Yamato", "Nagato", "Sakura",
+            "Sundeep", "Kaur", "Kumar"
+        ],
+        "lastNames": [
+            "Smith", "Johnson", "Williams", "Brown", "Jones",
+            "Garcia", "Miller", "Davis", "Rodriguez", "Martinez",
+            "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson",
+            "Thomas", "Taylor", "Moore", "Jackson", "Martin",
+            "Lee", "Perez", "Thompson", "White", "Harris",
+            "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson", "Lee",
+            "Walker", "Hall", "Young", "Hill", "Scott",
+            "Campos", "Rodrigues", "Alves", "Costa", "Fernandes",
+            "Nguyen", "Tran", "Pham", "Hsu", "Lam",
+            "Yamamoto", "Nakata", "Suzuki", "Kimura", "Petrowski"
+        ]
+    },
     "phoneNumbers": [
-        "123-456-7890", "234-567-8901"
+        "123-456-7890", "234-567-8901", "345-678-9012", "456-789-0123"
     ],
     "addresses": [
-        "123 Fake Street", "456 Imaginary Road"
+        "123 Fake Street", "456 Imaginary Road", "789 Real Avenue", "901 Fauxville Road"
     ],
     "emails": [
-        "example1@email.com", "example2@email.com"
+        "beaver99@email.com", "fox17@email.com", "rabbit01@email.com", "hare89@email.com"
     ]
 }

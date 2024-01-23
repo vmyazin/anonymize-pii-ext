@@ -47,12 +47,12 @@ chrome.storage.sync.get('extensionEnabled', function (data) {
         fetch(chrome.runtime.getURL('dictionary.json'))
             .then(response => response.json())
             .then(data => {
-                firstNames = data.firstNames;
-                lastNames = data.lastNames;
+                firstNames = data.names.firstNames;
+                lastNames = data.names.lastNames;
                 initializeExtension(); // Initialize after names are loaded
+                console.log(firstNames);
             })
             .catch(error => console.error('Error loading names:', error));
-
     }
 });
 
