@@ -27,8 +27,7 @@ async function createCategorySection(category, data) {
     sectionElement.querySelector('.btn-reset').addEventListener('click', function() {
         const category = this.dataset.category;
         resetSelectorsForCategory(category);
-    });
-    
+    });    
     console.log(`Section created for category: ${category}`);
 }
 
@@ -104,6 +103,21 @@ function aggregateSelectors(callback) {
     });
 }
 
+function clearAllInputs() {
+    document.querySelectorAll('input').forEach(input => input.value = '');
+}
+
+function toggleSectionExpansion() {
+    const categoryTitle = document.querySelectorAll('.category-title');
+
+    categoryTitle.forEach((title) => {
+        console.log("titleEl", categoryTitle);
+        title.addEventListener('click', () => {
+            title.parentElement.classList.toggle('expanded');
+        });
+    });
+}
+
 
 const categories = [];
 
@@ -122,9 +136,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Error loading or processing dictionary.json:', error);
     }
 
-    function clearAllInputs() {
-        document.querySelectorAll('input').forEach(input => input.value = '');
-    }
+    setTimeout(() => {
+        toggleSectionExpansion();    
+    }, 100);
+    
 
     categories.forEach(category => {
         const storageKey = `${category}Selectors`;
@@ -135,45 +150,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.log("Current selectors:", selectors, "for category:", category);
         });
     });
-
-    console.log('categories', categories);
-
-    // // Fetch and display the current selectors
-    // chrome.storage.sync.get('selectors', function (data) {
-    //     let currentSelectors = data.selectors;
-    //     displayCurrentSelectors(currentSelectors);
-    //     console.log("Current selectors:", currentSelectors);
-    // });
-
-    // Save button event listener
-    // document.getElementById('save-button').addEventListener('click', function () {
-    //     let newSelector = document.getElementById('selectorInput').value.trim();
-    //     chrome.storage.sync.get('selectors', function (data) {
-    //         let currentSelectors = data.selectors;
-    //         let index = currentSelectors.indexOf(newSelector);
-
-    //         if (newSelector && index === -1) {
-    //             currentSelectors.push(newSelector);
-    //         } else if (newSelector && index !== -1) {
-    //             currentSelectors.splice(index, 1);
-    //         }
-
-    //         chrome.storage.sync.set({ 'selectors': currentSelectors }, function () {
-    //             displayCurrentSelectors(currentSelectors);
-    //             clearAllInputs();
-    //             console.log('Selectors updated:', currentSelectors);
-    //         });
-    //     });
-    // });
-
-    // Reset to default values
-    // document.getElementById('reset-button').addEventListener('click', function () {
-    //     chrome.storage.sync.set({ 'selectors': [] }, () => {
-    //         console.log('Extension reset to default state');
-    //         displayCurrentSelectors([]);
-    //         clearAllInputs();
-    //     });
-    // });
 
     document.getElementById('apply-button').addEventListener('click', function () {
         aggregateSelectors(function(allSelectors) {

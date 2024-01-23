@@ -23,10 +23,8 @@ After installation:
 3. To customize class names, click the extension icon in the toolbar and enter your desired class names in the settings.
 
 ### To-do
-* On-off toggle
-* Add support for emails
-* Add support for phone numbers
-* Add support for mailing addresses
+- ability to load a custom data file
+- summary of selectors under the collapsed category titles (total number or actual selectors)
 
 ## Acknowledgments
 - A special thanks to everyone who contributed to the development and testing of this extension.

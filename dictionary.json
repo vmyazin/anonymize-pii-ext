@@ -28,9 +28,22 @@
         "123-456-7890", "234-567-8901", "345-678-9012", "456-789-0123"
     ],
     "addresses": [
-        "123 Fake Street", "456 Imaginary Road", "789 Real Avenue", "901 Fauxville Road"
+        "123 Imitation Street, Meadowville, TX 12345",
+        "456 Imaginary Road, Riverdale, FL 67890",
+        "789 Real Avenue, Hillside, AZ 34567",
+        "901 Fauxville Road, Brookville, GA 87654",
+        "234 Firewood Road, San Alfonso, CA 98765",
+        "567 Simulation Road, Realville, NC 54321",
+        "890 Historical Street, Redwood, NY 34567",
+        "345 Virtual Lane, Lakeview, TX 21098",
+        "678 Mirage Street, Meadowville, FL 87654",
+        "456 Dreamway Drive, Springville, CA 96543",
+        "234 Enchantment Road, Woodbridge, MI 54321",
+        "789 NW Whimsical Road, Fantasytown, FL 31098",
+        "567 Dreamland Avenue, Keanu, HI 97654"
     ],
     "emails": [
-        "beaver99@email.com", "fox17@email.com", "rabbit01@email.com", "hare89@email.com"
+        "beaver99@email.com", "fox17@email.com", "rabbit01@email.com", "hare89@email.com",
+        "wolf66@email.com", "lion11@coldmail.com", "tiger55@internetmail.com", "cat12@internetmail.com"
     ]
 }
