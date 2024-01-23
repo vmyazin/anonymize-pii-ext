@@ -46,11 +46,6 @@ function formatCategoryName(category) {
         .trim();
 }
 
-function resetSelectors(category) {
-    console.log(`Reset called for category: ${category}`);
-    // Implementation for resetting selectors
-}
-
 function addSelectorToCategory(category) {
     const inputElementId = `selectorInput-${category}`;
     const newSelector = document.getElementById(inputElementId).value.trim();
@@ -60,9 +55,14 @@ function addSelectorToCategory(category) {
         chrome.storage.sync.get([storageKey], function (data) {
             let selectors = data[storageKey] || [];
             selectors.push(newSelector);
+
             chrome.storage.sync.set({ [storageKey]: selectors }, function () {
                 console.log(`Updated selectors for ${category}:`, selectors);
-                // Optionally, update the UI to reflect the new selectors
+                // Update the UI
+                const currentSelectorsDiv = document.getElementById(`${category}-current-selectors`);
+                if (currentSelectorsDiv) {
+                    currentSelectorsDiv.textContent = selectors.join(', ');
+                }
             });
         });
     }
