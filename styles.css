@@ -114,6 +114,10 @@ h2 {
   margin-bottom: 0;
 }
 
+.disable-select {
+  user-select: none;
+}
+
 .switch {
   position: relative;
   display: inline-block;
