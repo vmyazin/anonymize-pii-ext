@@ -5,10 +5,10 @@
         <span>{{Category Name}}</span>
     </h3>
     <div class="section">
-        <p class="text-sm">Current selectors: <span id="{{category}}-current-selectors" class="current-selectors">{{Current Selectors}}</span></p>
+        <p class="text-sm">Current selectors: <span id="{{category}}-current-selectors" class="current-selectors text-light">{{Current Selectors}}</span></p>
         <div class="input-group">
             <label for="selectorInput-{{category}}">CSS Selector:</label>
-            <input type="text" id="selectorInput-{{category}}" class="selector-input flex-1" placeholder="Enter CSS selector">
+            <input type="text" id="selectorInput-{{category}}" class="selector-input flex-1" placeholder="Ex: td.class[attr]">
         </div>
         <div class="d-flex align-items-center gap-75">
             <button type="button" class="btn-reset faux-link" data-category="{{category}}">Reset</button>

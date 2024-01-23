@@ -1,41 +1,61 @@
-let firstNames = [];
-let lastNames = [];
-
 // Function to pick a random element from an array
 function pickRandom(array) {
     return array[Math.floor(Math.random() * array.length)];
 }
 
-// Function to generate a random full name
-function generateRandomName() {
-    const firstName = pickRandom(firstNames);
-    const lastName = pickRandom(lastNames);
-    return `${firstName} ${lastName}`;
+// Function to generate a random value for a category
+function generateRandomValue(category, dictionaryData) {
+    let randomValue = "";
+
+    switch (category) {
+        case 'names':
+            let firstName = pickRandom(dictionaryData.names.firstNames);
+            let lastName = pickRandom(dictionaryData.names.lastNames);
+            randomValue = `${firstName} ${lastName}`;
+            break;
+        case 'phoneNumbers':
+            randomValue = pickRandom(dictionaryData.phoneNumbers);
+            break;
+        case 'addresses':
+            randomValue = pickRandom(dictionaryData.addresses);
+            break;
+        case 'emails':
+            randomValue = pickRandom(dictionaryData.emails);
+            break;
+        default:
+            randomValue = '';
+            break;
+    }
+
+    return randomValue;
 }
 
-// Function to replace text content of elements with a specific class
-function replaceNames(selector) {
+function replaceValues(selector, category, dictionaryData) {
     const elements = document.querySelectorAll(selector);
     elements.forEach(element => {
-        element.textContent = generateRandomName();
+        element.textContent = generateRandomValue(category, dictionaryData);
     });
 }
 
-// Function to initialize the extension after names are loaded
-function initializeExtension() {
+function applyCategoryReplacements(category, selectors, dictionaryData) {
+    selectors.forEach(selector => replaceValues(selector, category, dictionaryData));
+}
+
+// Function to initialize the extension after data is loaded
+function initializeExtension(dictionaryData) {
     chrome.storage.sync.get('selectors', function (data) {
-        const selectors = data.selectors || DEFAULT_SELECTORS;
-        selectors.forEach(selector => replaceNames(selector));
+        const categorySelectors = data.selectors || {}; // Assuming selectors are stored by categories
 
-        // Listen for messages from the popup
-        chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-            if (request.action === "replaceNames") {
-                // Use the selectors provided in the message
-                request.selectors.forEach(selector => replaceNames(selector));
-            }
+        Object.keys(categorySelectors).forEach(category => {
+            categorySelectors[category].forEach(selector => {
+                replaceValues(selector, category, dictionaryData);
+            });
         });
+
+        console.log("Initial selectors applied for each category");
     });
 }
+
 
 // At the start of the script, check if the extension is enabled
 chrome.storage.sync.get('extensionEnabled', function (data) {
@@ -46,24 +66,19 @@ chrome.storage.sync.get('extensionEnabled', function (data) {
         // Load names from JSON and initialize the extension
         fetch(chrome.runtime.getURL('dictionary.json'))
             .then(response => response.json())
-            .then(data => {
-                firstNames = data.names.firstNames;
-                lastNames = data.names.lastNames;
-                initializeExtension(); // Initialize after names are loaded
-                console.log(firstNames);
+            .then(dictionaryData => {
+                globalDictionaryData = dictionaryData;
+                initializeExtension(dictionaryData);
             })
-            .catch(error => console.error('Error loading names:', error));
+            .catch(error => console.error('Error loading dictionary:', error));
     }
 });
 
 // Listen for messages from the popup
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    if (request.action === "replaceNames") {
-        chrome.storage.sync.get(['selectors', 'extensionEnabled'], function(data) {
-            if (data.extensionEnabled) {
-                // Apply replacement logic
-                request.selectors.forEach(selector => replaceNames(selector));
-            }
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    if (request.action === "applySelectors") {
+        Object.keys(request.selectors).forEach(category => {
+            applyCategoryReplacements(category, request.selectors[category], globalDictionaryData);
         });
     }
 });
