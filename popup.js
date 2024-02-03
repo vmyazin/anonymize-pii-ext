@@ -97,7 +97,6 @@ function aggregateSelectors(callback) {
             categoriesProcessed++;
             if (categoriesProcessed === categories.length) {
                 callback(allSelectors);
-                console.log("All selectors:", allSelectors);
             }
         });
     });
@@ -108,16 +107,19 @@ function clearAllInputs() {
 }
 
 function toggleSectionExpansion() {
-    const categoryTitle = document.querySelectorAll('.category-title');
+    const categoryTitles = document.querySelectorAll('.category-title');
 
-    categoryTitle.forEach((title) => {
-        console.log("titleEl", categoryTitle);
+    categoryTitles.forEach((title) => {
         title.addEventListener('click', () => {
-            title.parentElement.classList.toggle('expanded');
+            const parentSection = title.parentElement;
+            parentSection.classList.toggle('expanded');
+            const isExpanded = parentSection.classList.contains('expanded');
+            const sectionClass = parentSection.classList[0]; // Assuming the first class uniquely identifies the section
+            console.log(`Toggled expansion for: ${sectionClass}, Expanded: ${isExpanded}`);
+            localStorage.setItem(sectionClass, isExpanded.toString());
         });
     });
 }
-
 
 const categories = [];
 
@@ -140,7 +142,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         toggleSectionExpansion();    
     }, 100);
     
-
     categories.forEach(category => {
         const storageKey = `${category}Selectors`;
         chrome.storage.sync.get([storageKey], function(data) {
@@ -160,6 +161,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     });    
 
+    // Restore the state of each section
+    setTimeout(() => {
+        document.querySelectorAll('[class^="section-"]').forEach(section => {
+            // Extracts the section class (e.g., "section-names") as the key
+            const sectionClassKey = section.className.split(' ')[0]; // Assumes it's the first class
+            const isExpanded = localStorage.getItem(sectionClassKey) === 'true';
+            if (isExpanded) {
+                section.classList.add('expanded');
+            }
+        });
+    }, 200); // Adjust delay as necessary
+    
     document.getElementById('extensionToggle').addEventListener('change', function () {
         let isEnabled = this.checked;
         var contentContainer = document.getElementById('contentContainer');
