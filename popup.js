@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const storageKey = `${category}Selectors`;
         chrome.storage.sync.get([storageKey], function(data) {
             const selectors = data[storageKey] || [];
-            setTimeout(() => displayCurrentSelectors(category, selectors), 100);
+            setTimeout(() => displayCurrentSelectors(category, selectors), 150);
             // displayCurrentSelectors(category, selectors);
             console.log("Current selectors:", selectors, "for category:", category);
         });
