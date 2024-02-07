@@ -23,10 +23,14 @@ After installation:
 3. To customize class names, click the extension icon in the toolbar and enter your desired class names in the settings.
 
 ### To-do
-- ability to load a custom data file
+- ability to load a custom data JSON file with content
 - summary of selectors under the collapsed category titles (total number or actual selectors)
-- ability to load a local config file
-- remember section open state in local storage
+- ability to load a local config file for selectors 
+- ability to reset all settings to default
+- move Reset button next to list of selectors
+
+### Done
++ remember section open state in local storage and persist it
 
 ## Acknowledgments
 - A special thanks to everyone who contributed to the development and testing of this extension.
