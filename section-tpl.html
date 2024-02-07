@@ -8,13 +8,15 @@
         <span class="total-num" title="Total of CSS Selectors for this Category">{{Total Selectors}}</span>
     </h3>
     <div class="section mt-0">
-        <p class="text-sm mt-0">Current selectors: <span id="{{category}}-current-selectors" class="current-selectors text-light">{{Current Selectors}}</span></p>
+        <div class="d-flex align-items-start justify-content-between gap-10 mb-2">
+            <p class="text-sm my-0">Current selectors: <span id="{{category}}-current-selectors" class="current-selectors text-light">{{Current Selectors}}</span></p>
+            <button type="button" class="btn-reset faux-link strip-button" data-category="{{category}}">Reset</button>
+        </div>
         <div class="input-group">
             <label for="selectorInput-{{category}}">CSS Selector:</label>
             <input type="text" id="selectorInput-{{category}}" class="selector-input flex-1" placeholder="Ex: td.class[attr]">
         </div>
         <div class="d-flex align-items-center gap-75">
-            <button type="button" class="btn-reset faux-link strip-button" data-category="{{category}}">Reset</button>
             <button type="button" class="btn-add btn-full btn-outline" data-category="{{category}}">Add</button>
         </div>
     </div>
