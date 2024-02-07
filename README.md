@@ -24,13 +24,14 @@ After installation:
 
 ### To-do
 - ability to load a custom data JSON file with content
-- summary of selectors under the collapsed category titles (total number or actual selectors)
 - ability to load a local config file for selectors 
 - ability to reset all settings to default
 - move Reset button next to list of selectors
 
 ### Done
 + remember section open state in local storage and persist it
++ summary of selectors under the collapsed category titles (total number of actual selectors)
++ cleanse duplicate selectors
 
 ## Acknowledgments
 - A special thanks to everyone who contributed to the development and testing of this extension.

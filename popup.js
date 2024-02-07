@@ -9,6 +9,7 @@ async function createCategorySection(category, data) {
         .replace(/{{Category Name}}/g, formatCategoryName(category))
         .replace(/{{Current Selectors}}/g, (data.selectors || []).join(', '));
 
+
     // Convert the HTML string to DOM elements
     const sectionElement = new DOMParser().parseFromString(sectionHTML, 'text/html').body.firstChild;
 
@@ -19,16 +20,18 @@ async function createCategorySection(category, data) {
     document.getElementById('contentContainer').appendChild(sectionElement);
 
     // Add event listeners to the newly created buttons
-    sectionElement.querySelector('.btn-add').addEventListener('click', function() {
+    sectionElement.querySelector('.btn-add').addEventListener('click', function () {
         const category = this.dataset.category;
         addSelectorToCategory(category);
     });
 
-    sectionElement.querySelector('.btn-reset').addEventListener('click', function() {
+    sectionElement.querySelector('.btn-reset').addEventListener('click', function () {
         const category = this.dataset.category;
         resetSelectorsForCategory(category);
-    });    
+    });
     console.log(`Section created for category: ${category}`);
+
+    updateTotalSelectorsForCategory(category);
 }
 
 function formatCategoryName(category) {
@@ -54,16 +57,20 @@ function addSelectorToCategory(category) {
     if (newSelector) {
         chrome.storage.sync.get([storageKey], function (data) {
             let selectors = data[storageKey] || [];
-            selectors.push(newSelector);
-
-            chrome.storage.sync.set({ [storageKey]: selectors }, function () {
-                console.log(`Updated selectors for ${category}:`, selectors);
-                // Update the UI
-                const currentSelectorsDiv = document.getElementById(`${category}-current-selectors`);
-                if (currentSelectorsDiv) {
-                    currentSelectorsDiv.textContent = selectors.join(', ');
-                }
-            });
+            // Check for duplicate selector
+            if (!selectors.includes(newSelector)) {
+                selectors.push(newSelector);
+                chrome.storage.sync.set({ [storageKey]: selectors }, function () {
+                    console.log(`Updated selectors for ${category}:`, selectors);
+                    // Update the UI
+                    const currentSelectorsDiv = document.getElementById(`${category}-current-selectors`);
+                    if (currentSelectorsDiv) {
+                        currentSelectorsDiv.textContent = selectors.join(', ');
+                    }
+                    updateTotalSelectorsForCategory(category);
+                });
+            }
+            document.getElementById(inputElementId).value = '';
         });
     }
 }
@@ -75,6 +82,8 @@ function resetSelectorsForCategory(category) {
         // Optionally, update the UI to reflect the reset
         displayCurrentSelectors(category, []);
     });
+
+    updateTotalSelectorsForCategory(category);
 }
 
 function displayCurrentSelectors(category, selectors) {
@@ -92,7 +101,7 @@ function aggregateSelectors(callback) {
 
     categories.forEach(category => {
         const storageKey = `${category}Selectors`;
-        chrome.storage.sync.get([storageKey], function(data) {
+        chrome.storage.sync.get([storageKey], function (data) {
             allSelectors[category] = data[storageKey] || [];
             categoriesProcessed++;
             if (categoriesProcessed === categories.length) {
@@ -121,6 +130,24 @@ function toggleSectionExpansion() {
     });
 }
 
+function updateTotalSelectorsForCategory(category) {
+    const storageKey = `${category}Selectors`;
+    chrome.storage.sync.get([storageKey], function (result) {
+        const selectors = result[storageKey] || [];
+        // Find the .total-num span in the created section
+        const totalNumSpan = document.querySelector(`.section-${category} .total-num`);
+        if (totalNumSpan) {
+            totalNumSpan.textContent = selectors.length; // Update with the current number of selectors
+            // Check if the total is 0 and add 'zero' class; else, remove it
+            if (selectors.length === 0) {
+                totalNumSpan.classList.add('zero');
+            } else {
+                totalNumSpan.classList.remove('zero');
+            }
+        }
+    });
+}
+
 const categories = [];
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -139,27 +166,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     setTimeout(() => {
-        toggleSectionExpansion();    
+        toggleSectionExpansion();
     }, 100);
-    
+
     categories.forEach(category => {
         const storageKey = `${category}Selectors`;
-        chrome.storage.sync.get([storageKey], function(data) {
+        chrome.storage.sync.get([storageKey], function (data) {
             const selectors = data[storageKey] || [];
-            setTimeout(() => displayCurrentSelectors(category, selectors), 150);
+            setTimeout(() => displayCurrentSelectors(category, selectors), 200);
             // displayCurrentSelectors(category, selectors);
             console.log("Current selectors:", selectors, "for category:", category);
         });
     });
 
     document.getElementById('apply-button').addEventListener('click', function () {
-        aggregateSelectors(function(allSelectors) {
+        aggregateSelectors(function (allSelectors) {
             // Send a message to the content script with all the selectors
             chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                 chrome.tabs.sendMessage(tabs[0].id, { action: "applySelectors", selectors: allSelectors });
             });
         });
-    });    
+    });
 
     // Restore the state of each section
     setTimeout(() => {
@@ -171,8 +198,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 section.classList.add('expanded');
             }
         });
-    }, 200); // Adjust delay as necessary
-    
+    }, 300);
+
     document.getElementById('extensionToggle').addEventListener('change', function () {
         let isEnabled = this.checked;
         var contentContainer = document.getElementById('contentContainer');

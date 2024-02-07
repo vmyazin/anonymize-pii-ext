@@ -220,6 +220,7 @@ input:checked+.slider:before {
   display: flex;
   align-items: center;
   gap: 10px;
+  justify-content: space-between;
 }
 
 .icon-heading-combo img {
@@ -238,3 +239,17 @@ input:checked+.slider:before {
   transform: rotate(90deg);
 }
 
+.total-num {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: lightgrey;
+  color: #555;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 12.5px;
+}
+
+.total-num.zero {
+  background-color: #eee;
+  color: #aaa;
+}
